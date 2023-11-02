@@ -13,16 +13,23 @@ During the lab session:
 
 **1. The resources to download/get started with the software:**
 Pycharm:
+
 [Installation and Setup - PyCharm Guide (jetbrains.com)Links to an external site.](https://www.jetbrains.com/pycharm/guide/tutorials/getting-started-pycharm/installation-and-setup/)
+
 [Install PyCharm | PyCharm Documentation (jetbrains.com)Links to an external site.](https://www.jetbrains.com/help/pycharm/installation-guide.html#requirements)
 
 Pytest:
+
 [Pytest | PyCharm Documentation (jetbrains.com)Links to an external site.](https://www.jetbrains.com/help/pycharm/pytest.html#enable-pytest)
+
 [pytest: helps you write better programs — pytest documentationLinks to an external site.](https://docs.pytest.org/en/7.4.x/)
 
 Git:
+
 [Set up a Git repository | PyCharm Documentation (jetbrains.com)Links to an external site.](https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html)
+
 [How to Install Git on PyCharm? - Be on the Right Side of Change (finxter.com)Links to an external site.](https://blog.finxter.com/how-to-install-git-on-pycharm/)
+
 [How to Use Git and GitHub – Introduction for Beginners (freecodecamp.org)Links to an external site.](https://www.freecodecamp.org/news/introduction-to-git-and-github/)
 
 **2. Here are some tasks to get started with Pycharm, Pytest and Git:**

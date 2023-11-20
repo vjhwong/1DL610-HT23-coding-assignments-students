@@ -28,13 +28,15 @@ def login():
             elif not char.isalnum():
                 special_character = True
         if uppercase and special_character:
-            with open('users.json', "a") as file:
+            with open('users.json', "r") as file:
                 data = json.load(file)
                 new_user = {
                     "username": username,
                     "password": password,
                     "wallet": 0
                 }
-                json.dump(new_user, data)
+                data.append(new_user)
+            with open('users.json', "w") as file:
+                json.dump(data, file, indent=1)
     ############# added code
     return None

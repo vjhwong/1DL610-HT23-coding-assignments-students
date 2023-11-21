@@ -12,13 +12,13 @@ def login():
             if entry["username"] == username and entry["password"] == password:
                 print("Successfully logged in")
                 return {"username": entry["username"], "wallet": entry["wallet"]}
-        print("Either username or password were incorrect")
+        #print("Either username or password were incorrect")
     ############# added code
-    answer = input("Would you like to register?: ")
+    answer = input("No user found, Would you like to register?: ")
     if answer == "yes":
         password_answer = input("Please input password: ")
         if len(password_answer) < 8:
-            print("length too short")
+            print("Length too short")
             return None
         uppercase = False
         special_character = False
@@ -38,5 +38,6 @@ def login():
                 data.append(new_user)
             with open('users.json', "w") as file:
                 json.dump(data, file, indent=1)
+                return new_user
     ############# added code
     return None

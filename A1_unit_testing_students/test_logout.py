@@ -1,7 +1,9 @@
-import pytest
-from ..logout import logout
+import builtins
 
-from ..checkout_and_payment import *
+import pytest
+from A1_unit_testing_students.logout import logout
+
+from checkout_and_payment import *
 import shutil
 import os
 
@@ -9,9 +11,9 @@ import os
 def empty_cart():
     return ShoppingCart()
 
-@pytest.fixture
-def load_stub(mocker):
-    return mocker.patch('load_products_from_csv', return_value=[])
+#@pytest.fixture
+#def load_stub(mocker):
+#    return mocker.patch('load_products_from_csv', return_value=[])
 
 
 #@pytest.fixture
@@ -24,13 +26,14 @@ def load_stub(mocker):
 @pytest.fixture
 def copy_csv_file():
     # Set up
-    shutil.copy('..\products.csv', 'copy_products.csv')
+    shutil.copy('products.csv', 'copy_products.csv')
     yield
     # Teardown
     os.remove('copy_products.csv')
 
-def test_1(copy_csv_file, load_stub):
+# Test 1
+def test_empty_cart(copy_csv_file, empty_cart):
     result = logout(empty_cart)
+    assert result is True
 
-    #result = logout(empty_cart)
 

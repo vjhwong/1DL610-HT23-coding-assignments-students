@@ -32,7 +32,7 @@ def login():
                 data = json.load(file)
                 new_user = {
                     "username": username,
-                    "password": password,
+                    "password": password_answer,
                     "wallet": 0
                 }
                 data.append(new_user)

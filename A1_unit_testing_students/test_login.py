@@ -32,21 +32,21 @@ def test_login_int(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 
     result = login()
-    assert result == None
+    assert result is None
 
 def test_login_float(monkeypatch):
     responses = iter([4.2, 4.2, 4.2])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 
     result = login()
-    assert result == None
+    assert result is None
 
 def test_login_list(monkeypatch):
     responses = iter([[], [], []])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 
     result = login()
-    assert result == None
+    assert result is None
 
 def test_login_list(monkeypatch):
     responses = iter(["a"*(10**10), ["a"*(10**10)], ["a"*(10**10)]])

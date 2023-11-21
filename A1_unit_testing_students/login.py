@@ -35,6 +35,10 @@ def login():
                     "password": password_answer,
                     "wallet": 0
                 }
+                for entry in data:
+                    if entry["username"] == username:
+                        print("User with same username already exists")
+                        return None
                 data.append(new_user)
             with open('users.json', "w") as file:
                 json.dump(data, file, indent=1)

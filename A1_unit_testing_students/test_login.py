@@ -18,7 +18,7 @@ def test_add_new_user1(monkeypatch, copy_json_file):
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 
     result = login()
-    assert result == {'username': 'Mark', 'password': 'nopass', 'wallet': 0}
+    assert result == {'username': 'Mark', 'password': '1234567Q#', 'wallet': 0}
 
 # test 2
 def test_login1(monkeypatch, copy_json_file):
@@ -92,16 +92,16 @@ def test_add_new_user3(monkeypatch, copy_json_file):
 
 # test 10
 def test_add_new_user4(monkeypatch, copy_json_file):
-    responses = iter(["Mark", "1234567Q#", "yes", "pass"])
+    responses = iter(["Mark", "nopass1", "yes", "nopass111"])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 
-    result = login() #??
-    assert result is {"username": "Mark","password": "nopass","wallet": 0}
+    result = login()
+    assert result is None
 
 
 
 
-# Invalid test 1, 2, 3
+# Invalid test 1
 def test_login_int(monkeypatch):
     responses = iter([4, 4, 4])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
@@ -109,6 +109,7 @@ def test_login_int(monkeypatch):
     result = login()
     assert result is None
 
+# Invalid test 1
 def test_login_float(monkeypatch):
     responses = iter([4.2, 4.2, 4.2])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
@@ -116,6 +117,7 @@ def test_login_float(monkeypatch):
     result = login()
     assert result is None
 
+# Invalid test 1
 def test_login_list(monkeypatch):
     responses = iter([[], [], []])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))

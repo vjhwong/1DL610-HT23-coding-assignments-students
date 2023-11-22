@@ -3,17 +3,28 @@ from login import login
 import pytest
 import shutil
 
+import os
 
-@pytest.fixture
+
+
+@pytest.fixture(scope="session")
 def copy_json_file():
     # Set up
-    shutil.copy('users.json', 'copy_users.json')
+    os.chdir("tests")
+    shutil.copy('../users.json', 'users.json')
+    # cwd = os.getcwd()
+    # print(cwd)
+
+    # dir_path = os.path.dirname(os.path.realpath("users.json"))
+    # print(dir_path)
+    # print(os.listdir())
+
     yield
     # Teardown
-    os.remove('copy_users.json')
+    os.remove('users.json')
 
 # test 1
-def test_add_new_user1(monkeypatch, copy_json_file):
+def test_add_new_user1(copy_json_file, monkeypatch):
     responses = iter(["Mark", "nopass", "yes", "1234567Q#"])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
 

@@ -3,6 +3,7 @@ import re
 from checkout_and_payment import checkoutAndPayment
 import csv
 
+
 #Display all the products
 def display_csv_as_table(csv_filename):
     with open(csv_filename, 'r', newline='') as csvfile:
@@ -12,6 +13,7 @@ def display_csv_as_table(csv_filename):
         # Print each row
         for row in csv_reader:
             print(row)
+
 
 #Display products filtered by name
 def display_filtered_table(csv_filename, search):

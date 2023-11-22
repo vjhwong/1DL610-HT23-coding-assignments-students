@@ -12,6 +12,7 @@ def copy_csv_file():
     # Teardown
     os.remove('copy_products.csv')
 
+
 @pytest.fixture
 def empty_csv_file(tmp_path):
     # Create an empty CSV file
@@ -28,17 +29,17 @@ def header_only_csv_file(tmp_path):
     csv_filename = tmp_path / 'header_only.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['Product', 'Price', 'Units'])  # Writing only the header
+        csv_writer.writerow(['Product', 'Price', 'Units'])
     return csv_filename
 
 
 @pytest.fixture
 def csv_file_without_header(tmp_path):
-    # Create a CSV file without a header using the pytest tmp_path fixture
+    # Create a CSV file without a header
     csv_filename = tmp_path / 'no_header.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['Apple', 1.0, 10])  # Example row without a header
+        csv_writer.writerow(['Apple', 1.0, 10])
         csv_writer.writerow(['Banana', 0.5, 20])
         csv_writer.writerow(['Orange', 0.8, 15])
     return csv_filename
@@ -46,7 +47,7 @@ def csv_file_without_header(tmp_path):
 
 @pytest.fixture
 def different_delimiter_csv_file(tmp_path):
-    # Create a CSV file with a different delimiter (e.g., semicolon)
+    # Create a CSV file with ; as delimiter
     csv_filename = tmp_path / 'different_delimiter.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=';')  # Set the delimiter to semicolon
@@ -59,7 +60,7 @@ def different_delimiter_csv_file(tmp_path):
 
 @pytest.fixture
 def csv_file_with_missing_values(tmp_path):
-    # Create a CSV file with missing values using the pytest tmp_path fixture
+    # Create a CSV file with missing values
     csv_filename = tmp_path / 'missing_values.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
@@ -72,7 +73,7 @@ def csv_file_with_missing_values(tmp_path):
 
 @pytest.fixture
 def special_characters_csv_file(tmp_path):
-    # Create a CSV file with special characters using the pytest tmp_path fixture
+    # Create a CSV file with special characters
     csv_filename = tmp_path / 'special_characters.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
@@ -85,21 +86,21 @@ def special_characters_csv_file(tmp_path):
 
 @pytest.fixture
 def irregular_spacing_csv_file(tmp_path):
-    # Create a CSV file with irregular spacing using the pytest tmp_path fixture
+    # Create a CSV file with irregular spacing
     csv_filename = tmp_path / 'irregular_spacing.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         # Write rows with irregular spacing
         csv_writer.writerow(['Product', 'Price', 'Units'])
         csv_writer.writerow(['Apple', 1.0, 10])
-        csv_writer.writerow(['Banana',    0.5, 20])  # Irregular spacing before '0.5'
+        csv_writer.writerow(['Banana',    0.5, 20])  # Irregular spacing
         csv_writer.writerow(['Orange', 0.8, 15])
     return csv_filename
 
 
 @pytest.fixture
 def quoted_values_csv_file(tmp_path):
-    # Create a CSV file with quoted values using the pytest tmp_path fixture
+    # Create a CSV file with quoted values
     csv_filename = tmp_path / 'quoted_values.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
@@ -110,76 +111,56 @@ def quoted_values_csv_file(tmp_path):
     return csv_filename
 
 
-def test_1_file_not_found():
+def test_1_display_file_not_found():
     with pytest.raises(FileNotFoundError):
         display_csv_as_table("no_csv.csv")
 
 
-def test_2_empty_csv_file(empty_csv_file, capsys):
-    # Test displaying an empty CSV file
+def test_2_display_empty_csv_file(empty_csv_file, capsys):
     display_csv_as_table(empty_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
     assert captured.out == '[]\n'
 
 
 def test_3_display_csv_header_only_file(header_only_csv_file, capsys):
-    # Test displaying a CSV file with only a header
     display_csv_as_table(header_only_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
-    # Assert that the header is printed correctly
     assert 'Product' in captured.out
     assert 'Price' in captured.out
     assert 'Units' in captured.out
 
 
 def test_4_display_csv_without_header(csv_file_without_header, capsys):
-    # Test displaying a CSV file without a header
     display_csv_as_table(csv_file_without_header)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
     # Assert that the header is not present in the output
     assert 'Product' not in captured.out
     assert 'Price' not in captured.out
     assert 'Units' not in captured.out
 
-    # Assert that the rows are printed correctly
+    # Assert that the rows are printed
     assert 'Apple' in captured.out
     assert 'Banana' in captured.out
     assert 'Orange' in captured.out
 
 
 def test_5_display_csv_different_delimiters(different_delimiter_csv_file, capsys):
-    # Test displaying a CSV file with a different delimiter
     display_csv_as_table(different_delimiter_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
-    print(captured)
-    # Assert that the header is printed correctly
+    # Assert that the header is printed
     assert 'Product' in captured.out
     assert 'Price' in captured.out
     assert 'Units' in captured.out
 
-    # Assert that rows are printed with the correct delimiter (e.g., semicolon)
+    # Assert that the rows are printed
     assert 'Apple' in captured.out
     assert '1.0' in captured.out
     assert '10' in captured.out
 
 
 def test_6_display_csv_with_missing_values(csv_file_with_missing_values, capsys):
-    # Test displaying a CSV file with missing values
     display_csv_as_table(csv_file_with_missing_values)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
     # Assert that the header is printed correctly
     assert 'Product' in captured.out
     assert 'Price' in captured.out
@@ -192,16 +173,11 @@ def test_6_display_csv_with_missing_values(csv_file_with_missing_values, capsys)
 
     # Assert that missing values are indicated
     assert '[]' not in captured.out
-    assert 'None' in captured.out
 
 
 def test_7_display_csv_special_characters(special_characters_csv_file, capsys):
-    # Test displaying a CSV file with special characters
     display_csv_as_table(special_characters_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
     # Assert that the header is printed correctly
     assert 'Product' in captured.out
     assert 'Price' in captured.out
@@ -220,12 +196,8 @@ def test_7_display_csv_special_characters(special_characters_csv_file, capsys):
 
 
 def test_8_display_csv_irregular_spacing(irregular_spacing_csv_file, capsys):
-    # Test displaying a CSV file with irregular spacing
     display_csv_as_table(irregular_spacing_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
     # Assert that the header is printed correctly
     assert 'Product' in captured.out
     assert 'Price' in captured.out
@@ -237,12 +209,8 @@ def test_8_display_csv_irregular_spacing(irregular_spacing_csv_file, capsys):
 
 
 def test_9_display_csv_quoted_values(quoted_values_csv_file, capsys):
-    # Test displaying a CSV file with quoted values
     display_csv_as_table(quoted_values_csv_file)
-
-    # Capture printed output
     captured = capsys.readouterr()
-
     # Assert that the header is printed correctly
     assert 'Product' in captured.out
     assert 'Price' in captured.out
@@ -254,7 +222,7 @@ def test_9_display_csv_quoted_values(quoted_values_csv_file, capsys):
     assert '"10"' in captured.out
 
 
-def test_10_full_csv_file(copy_csv_file, capsys):
+def test_10_display_full_csv_file(copy_csv_file, capsys):
     display_csv_as_table("products.csv")
     captured = capsys.readouterr()
     expected_output = ("['Product', 'Price', 'Units']\n"

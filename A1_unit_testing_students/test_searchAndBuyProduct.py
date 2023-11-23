@@ -23,7 +23,6 @@ def login_stub(mocker):
     return mocker.patch('products.login', return_value='login')
 
 
-
 @pytest.fixture
 def display_csv_as_table_stub(mocker):
     return mocker.patch('products.display_csv_as_table', return_value='csv_as_table')
@@ -46,7 +45,7 @@ def checkoutAndPayment_stub(mocker):
 @pytest.fixture
 def dummy_csv_file(tmp_path):
     # Create a CSV file without a header
-    csv_filename = tmp_path / 'dummy.csv'
+    csv_filename = tmp_path / 'products.csv'
     with open(csv_filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(['Product', 'Price', 'Units'])
@@ -54,12 +53,6 @@ def dummy_csv_file(tmp_path):
         csv_writer.writerow(['Banana', 0.5, 20])
         csv_writer.writerow(['Orange', 0.8, 15])
     return csv_filename
-
-"""
-def test_1_assert_login_call(login_stub, mocker):
-    result = searchAndBuyProduct()
-    login_stub.assert_called_once()
-"""
 
 
 def test_1_all(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, dummy_csv_file, mocker, monkeypatch):
@@ -82,8 +75,122 @@ def test_2_all_uppercase(copy_csv_file, login_stub, display_csv_as_table_stub, c
     display_csv_as_table_stub.assert_called_once_with("products.csv")
     checkoutAndPayment_stub.assert_called_once_with("login")
 
-"""
-def test_3_(login_stub, display_csv_as_table_stub, mocker, monkeypatch):
+
+def test_3_single(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
     result = searchAndBuyProduct()
-    login_stub.assert_called_once_with()
-"""
+
+    login_stub.assert_called_once()
+    display_filtered_table_stub.assert_called_once_with("products.csv", "Apple")
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_4_pair(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple, Banana", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    display_filtered_table_stub.assert_called_once_with("products.csv", "Apple, Banana")
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_5_single_bad(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["no", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    display_filtered_table_stub.assert_called_once_with("products.csv", "no")
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_6_single_two_calls(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple", "n", "Milk", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_filtered_table_stub.call_count == 2
+    display_filtered_table_stub.assert_has_calls([call('products.csv', 'Apple'), call('products.csv', 'Milk')])
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_7_pair_two_calls(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple, Banana", "n", "Milk", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_filtered_table_stub.call_count == 2
+    display_filtered_table_stub.assert_has_calls([call('products.csv', 'Apple, Banana'), call('products.csv', 'Milk')])
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_8_pair_single_all_calls(copy_csv_file, login_stub, display_csv_as_table_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple, Banana", "n", "all", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_filtered_table_stub.call_count == 1
+    display_filtered_table_stub.assert_called_once_with('products.csv', 'Apple, Banana')
+    assert display_csv_as_table_stub.call_count == 1
+    display_csv_as_table_stub.assert_called_once_with('products.csv')
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_9_pair_all_calls(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["all", "n", "aLl", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_csv_as_table_stub.call_count == 2
+    display_csv_as_table_stub.assert_has_calls([call('products.csv'), call('products.csv')])
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_10_many_all_calls(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["all", "n", "all", "n", "all", "n", "all", "n", "all", "n", "all", "n", "all", "n", "all", "n", "all", "n", "aLl", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_csv_as_table_stub.call_count == 10
+    display_csv_as_table_stub.assert_has_calls([call('products.csv')])
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_11_single_many_calls(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    responses = iter(["Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "n", "Apple", "y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+    result = searchAndBuyProduct()
+
+    login_stub.assert_called_once()
+    assert display_filtered_table_stub.call_count == 10
+    display_filtered_table_stub.assert_has_calls([call('products.csv', 'Apple')])
+    checkoutAndPayment_stub.assert_called_once_with("login")
+
+def test_1_invalid_int(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    with pytest.raises(AttributeError):
+        responses = iter([1, "y"])
+        monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+        result = searchAndBuyProduct()
+
+def test_2_invalid_float(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    with pytest.raises(AttributeError):
+        responses = iter([1.1, "y"])
+        monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+        result = searchAndBuyProduct()
+
+def test_3_invalid_list(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
+    with pytest.raises(AttributeError):
+        responses = iter([[], "y"])
+        monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+
+        result = searchAndBuyProduct()

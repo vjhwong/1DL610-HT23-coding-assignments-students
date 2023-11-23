@@ -300,6 +300,16 @@ def test_10_display_full_csv_file(copy_csv_file, capsys):
     assert captured.out == expected_output
 
 
+def test_1_invalid_int():
+    with pytest.raises(StopIteration):
+        display_csv_as_table(1)
 
 
+def test_2_invalid_float():
+    with pytest.raises(TypeError):
+        display_csv_as_table(1.1)
 
+
+def test_3_invalid_list():
+    with pytest.raises(TypeError):
+        display_csv_as_table([])

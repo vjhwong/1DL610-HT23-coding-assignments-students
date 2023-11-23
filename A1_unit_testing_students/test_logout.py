@@ -54,6 +54,13 @@ def str_item_cart():
 
 
 @pytest.fixture
+def float_item_cart():
+    shopping_cart = ShoppingCart()
+    shopping_cart.items = 1.1
+    return shopping_cart
+
+
+@pytest.fixture
 def copy_csv_file():
     # Set up
     shutil.copy('products.csv', 'copy_products.csv')
@@ -119,11 +126,30 @@ def test_8_logout_random_confirmation(monkeypatch, copy_csv_file, non_empty_cart
     assert result is False
 
 
-def test_9_logout_int_item(copy_csv_file, int_item_cart):
+def test_9_many_items_confirm(monkeypatch, copy_csv_file, many_items_cart):
+    responses = iter(["Y"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+    result = logout(many_items_cart)
+    assert result is True
+
+
+def test_10_many_items_deny(monkeypatch, copy_csv_file, many_items_cart):
+    responses = iter(["N"])
+    monkeypatch.setattr("builtins.input", lambda msg: next(responses))
+    result = logout(many_items_cart)
+    assert result is False
+
+
+def test_1_invalid_logout_int_item(copy_csv_file, int_item_cart):
     with pytest.raises(TypeError):
         logout(int_item_cart)
 
 
-def test_10_logout_str_items(copy_csv_file, str_item_cart):
+def test_2_invalid_logout_str_items(copy_csv_file, str_item_cart):
     with pytest.raises(AttributeError):
         logout(str_item_cart)
+
+
+def test_3_invalid_logout_float_items(copy_csv_file, float_item_cart):
+    with pytest.raises(TypeError):
+        logout(float_item_cart)

@@ -207,7 +207,7 @@ def test_2_invalid_type_float(copy_csv_file, capsys):
         assert captured.out == expected_output
 
 
-def test_2_invalid_type_list(copy_csv_file, capsys):
+def test_3_invalid_type_list(copy_csv_file, capsys):
     with pytest.raises(TypeError):
         display_filtered_table(copy_csv_file, [])
         captured = capsys.readouterr()

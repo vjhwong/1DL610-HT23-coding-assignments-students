@@ -120,7 +120,7 @@ def test_login_int(monkeypatch):
     result = login()
     assert result is None
 
-# Invalid test 1
+# Invalid test 2
 def test_login_float(monkeypatch):
     responses = iter([4.2, 4.2, 4.2])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))
@@ -128,7 +128,7 @@ def test_login_float(monkeypatch):
     result = login()
     assert result is None
 
-# Invalid test 1
+# Invalid test 3
 def test_login_list(monkeypatch):
     responses = iter([[], [], []])
     monkeypatch.setattr('builtins.input', lambda msg: next(responses))

@@ -33,14 +33,18 @@ def display_filtered_table(csv_filename, search):
 def searchAndBuyProduct():
     login_info = None
     marker = True
+    print("g")
     #Login as a user
     while marker:
+
+        print("g")
         login_info = login()
         if login_info is not None:
             marker = False
             break
     #Search for products then begin to shop
     while True:
+        print("g")
         search = input("Search for products in inventory (type all for whole inventory):")
         if search.lower() == "all":
             display_csv_as_table("products.csv")
@@ -49,5 +53,6 @@ def searchAndBuyProduct():
         check = input("Ready to shop? (Y/N)")
         if check.lower() == "y":
             break
+    print("g")
     checkoutAndPayment(login_info)
     print("g")

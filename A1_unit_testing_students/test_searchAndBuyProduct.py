@@ -41,21 +41,7 @@ def display_filtered_table_stub(mocker):
 def checkoutAndPayment_stub(mocker):
     return mocker.patch('products.checkoutAndPayment', return_value='')
 
-
-@pytest.fixture
-def dummy_csv_file(tmp_path):
-    # Create a CSV file without a header
-    csv_filename = tmp_path / 'products.csv'
-    with open(csv_filename, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['Product', 'Price', 'Units'])
-        csv_writer.writerow(['Apple', 1.0, 10])
-        csv_writer.writerow(['Banana', 0.5, 20])
-        csv_writer.writerow(['Orange', 0.8, 15])
-    return csv_filename
-
-
-def test_1_all(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, dummy_csv_file, mocker, monkeypatch):
+def test_1_all(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
     responses = iter(["all", "y"])
     monkeypatch.setattr("builtins.input", lambda msg: next(responses))
 
@@ -65,7 +51,7 @@ def test_1_all(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAnd
     display_csv_as_table_stub.assert_called_once_with("products.csv")
     checkoutAndPayment_stub.assert_called_once_with("login")
 
-def test_2_all_uppercase(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, dummy_csv_file, mocker, monkeypatch):
+def test_2_all_uppercase(copy_csv_file, login_stub, display_csv_as_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
     responses = iter(["ALL", "y"])
     monkeypatch.setattr("builtins.input", lambda msg: next(responses))
 

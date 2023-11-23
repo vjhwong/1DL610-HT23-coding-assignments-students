@@ -28,6 +28,7 @@ def display_filtered_table(csv_filename, search):
             if re.search(row[condition_index],search,re.IGNORECASE):
                 print(row)
 
+
 #Search for a product and buy it
 def searchAndBuyProduct():
     login_info = None
@@ -49,3 +50,4 @@ def searchAndBuyProduct():
         if check.lower() == "y":
             break
     checkoutAndPayment(login_info)
+    print("g")

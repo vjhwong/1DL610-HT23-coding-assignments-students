@@ -6,17 +6,17 @@ import os
 import shutil
 from unittest.mock import call
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def copy_csv_file():
     # Set up
     os.chdir("tests")
     shutil.copy('../products.csv', 'products.csv')
-    # cwd = os.getcwd()
-    # print(cwd)
 
     yield
+
     # Teardown
     os.remove('products.csv')
+    os.chdir("..")
 
 @pytest.fixture
 def login_stub(mocker):

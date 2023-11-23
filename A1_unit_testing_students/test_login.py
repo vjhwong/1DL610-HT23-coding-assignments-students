@@ -7,21 +7,17 @@ import os
 
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def copy_json_file():
     # Set up
     os.chdir("tests")
     shutil.copy('../users.json', 'users.json')
-    # cwd = os.getcwd()
-    # print(cwd)
-
-    # dir_path = os.path.dirname(os.path.realpath("users.json"))
-    # print(dir_path)
-    # print(os.listdir())
 
     yield
+
     # Teardown
     os.remove('users.json')
+    os.chdir("..")
 
 # test 1
 def test_add_new_user1(copy_json_file, monkeypatch):

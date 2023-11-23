@@ -4,13 +4,17 @@ import os
 import shutil
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def copy_csv_file():
     # Set up
-    shutil.copy('products.csv', 'copy_products.csv')
+    os.chdir("tests")
+    shutil.copy('../products.csv', 'products.csv')
+
     yield
+
     # Teardown
-    os.remove('copy_products.csv')
+    os.remove('products.csv')
+    os.chdir("..")
 
 
 @pytest.fixture

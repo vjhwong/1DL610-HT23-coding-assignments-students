@@ -8,6 +8,18 @@ import shutil
 import os
 
 
+@pytest.fixture(scope="module")
+def copy_csv_file():
+    # Set up
+    os.chdir("tests")
+    shutil.copy('../products.csv', 'products.csv')
+
+    yield
+
+    # Teardown
+    os.remove('products.csv')
+    os.chdir("..")
+
 @pytest.fixture
 def empty_cart():
     return ShoppingCart()
@@ -58,16 +70,6 @@ def float_item_cart():
     shopping_cart = ShoppingCart()
     shopping_cart.items = 1.1
     return shopping_cart
-
-
-@pytest.fixture
-def copy_csv_file():
-    # Set up
-    shutil.copy('products.csv', 'copy_products.csv')
-    yield
-    # Teardown
-    os.remove('copy_products.csv')
-
 
 def test_1_empty_cart(copy_csv_file, empty_cart):
     result = logout(empty_cart)

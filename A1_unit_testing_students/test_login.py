@@ -19,6 +19,7 @@ def copy_json_file():
     os.remove('users.json')
     os.chdir("..")
 
+
 # test 1
 def test_add_new_user1(copy_json_file, monkeypatch):
     responses = iter(["Mark", "nopass", "yes", "1234567Q#"])

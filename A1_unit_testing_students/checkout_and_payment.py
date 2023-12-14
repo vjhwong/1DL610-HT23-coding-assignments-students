@@ -9,6 +9,18 @@ class User:
         self.wallet = float(wallet)
 
 
+class Card:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def __str__(self):
+        return f"Card: {self.name}, Balance: {self.balance}"
+
+    def pay(self, price):
+        self.balance -= price
+
+
 # Product class to represent product information
 class Product:
     def __init__(self, name, price, units):

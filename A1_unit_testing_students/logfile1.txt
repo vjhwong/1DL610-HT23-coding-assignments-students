@@ -1,0 +1,29 @@
+Launching pytest with arguments C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students\regtest_task1.py --no-header --no-summary -q in C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students
+
+##teamcity[enteredTheMatrix timestamp='2023-12-14T13:35:29.969']
+============================= test session starts =============================
+collecting ... collected 5 items
+##teamcity[testCount timestamp='2023-12-14T13:35:30.145' count='5']
+
+regtest_task1.py::test_reg_login_1 ##teamcity[testSuiteStarted timestamp='2023-12-14T13:35:30.150' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1' name='regtest_task1' nodeId='1' parentNodeId='0']
+##teamcity[testStarted timestamp='2023-12-14T13:35:30.151' captureStandardOutput='false' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_1' metainfo='test_reg_login_1' name='test_reg_login_1' nodeId='2' parentNodeId='1']
+PASSED                                [ 20%]##teamcity[testStdOut timestamp='2023-12-14T13:35:30.179' flowId='regtest_task1.test_reg_login_1' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_1' name='test_reg_login_1' nodeId='2' out='Successfully logged in|n' parentNodeId='1']
+##teamcity[testFinished timestamp='2023-12-14T13:35:30.179' duration='8' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_1' name='test_reg_login_1' nodeId='2' parentNodeId='1']
+
+regtest_task1.py::test_reg_login_2 ##teamcity[testStarted timestamp='2023-12-14T13:35:30.182' captureStandardOutput='false' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_2' metainfo='test_reg_login_2' name='test_reg_login_2' nodeId='3' parentNodeId='1']
+PASSED                                [ 40%]##teamcity[testStdOut timestamp='2023-12-14T13:35:30.198' flowId='regtest_task1.test_reg_login_2' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_2' name='test_reg_login_2' nodeId='3' out='Successfully logged in|n' parentNodeId='1']
+##teamcity[testFinished timestamp='2023-12-14T13:35:30.199' duration='12' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_2' name='test_reg_login_2' nodeId='3' parentNodeId='1']
+
+regtest_task1.py::test_reg_login_3 ##teamcity[testStarted timestamp='2023-12-14T13:35:30.201' captureStandardOutput='false' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_3' metainfo='test_reg_login_3' name='test_reg_login_3' nodeId='4' parentNodeId='1']
+PASSED                                [ 60%]##teamcity[testFinished timestamp='2023-12-14T13:35:30.206' duration='2' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_3' name='test_reg_login_3' nodeId='4' parentNodeId='1']
+
+regtest_task1.py::test_reg_login_4 ##teamcity[testStarted timestamp='2023-12-14T13:35:30.214' captureStandardOutput='false' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_4' metainfo='test_reg_login_4' name='test_reg_login_4' nodeId='5' parentNodeId='1']
+PASSED                                [ 80%]##teamcity[testStdOut timestamp='2023-12-14T13:35:30.223' flowId='regtest_task1.test_reg_login_4' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_4' name='test_reg_login_4' nodeId='5' out='Length too short|n' parentNodeId='1']
+##teamcity[testFinished timestamp='2023-12-14T13:35:30.223' duration='2' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_4' name='test_reg_login_4' nodeId='5' parentNodeId='1']
+
+regtest_task1.py::test_reg_login_5 ##teamcity[testStarted timestamp='2023-12-14T13:35:30.236' captureStandardOutput='false' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_5' metainfo='test_reg_login_5' name='test_reg_login_5' nodeId='6' parentNodeId='1']
+PASSED                                [100%]##teamcity[testFinished timestamp='2023-12-14T13:35:30.246' duration='6' locationHint='python<C:\Users\victo\Uni Courses\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://regtest_task1.test_reg_login_5' name='test_reg_login_5' nodeId='6' parentNodeId='1']
+
+
+============================== 5 passed in 0.21s ==============================
+##teamcity[testSuiteFinished timestamp='2023-12-14T13:35:30.291' name='regtest_task1' nodeId='1' parentNodeId='0']

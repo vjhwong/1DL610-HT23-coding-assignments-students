@@ -2,12 +2,11 @@ import os
 from login import login
 import pytest
 import shutil
-
 import os
 
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def copy_json_file():
     # Set up
     os.chdir("tests")

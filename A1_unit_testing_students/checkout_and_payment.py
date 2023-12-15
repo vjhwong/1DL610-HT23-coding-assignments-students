@@ -4,9 +4,12 @@ from logout import logout
 
 # User class to represent user information
 class User:
-    def __init__(self, name, wallet):
+    def __init__(self, name, wallet, cards=None):
+        if cards is None:
+            cards = []
         self.name = name
         self.wallet = float(wallet)
+        self.cards = cards
 
 
 class Card:
@@ -82,14 +85,43 @@ def checkout(user, cart):
 
     total_price = cart.get_total_price()
 
-    if total_price > user.wallet:
-        print("\n")
-        print(f"You don't have enough money to complete the purchase.")
-        print("Please try again!")
-        return
+    payment_method = input("Pay with wallet or card? 'card'/'wallet'").lower()
 
-    # Deduct the total price from the user's wallet
-    user.wallet -= total_price
+    if payment_method == "card":
+        if len(user.cards) == 0:
+            print("No cards")
+            return
+
+        print("\nHere are all your cards: ")
+        for count, cards in enumerate(user.cards, start=1):
+            print(f"{count}. {cards}")
+        card_to_use_index = int(input(
+            "Which card do you want to use? Please enter the number to the left of the card: "
+        ))-1
+
+        if card_to_use_index >= len(user.cards):
+            raise IndexError("You do not have that many cards.")
+        card = user.cards[card_to_use_index]
+        if card.balance < total_price:
+            print("\n")
+            print(f"You don't have enough money to complete the purchase.")
+            print("Please try again!")
+            return
+        card.pay(total_price)
+        print("\n")
+        print(print(f"Thank you for your purchase, {user.name}! Your remaining balance on {card.name} card is {card.balance}"))
+
+    elif payment_method == "wallet":
+        if total_price > user.wallet:
+            print("\n")
+            print(f"You don't have enough money to complete the purchase.")
+            print("Please try again!")
+            return
+        # Deduct the total price from the user's wallet
+        user.wallet -= total_price
+        print("\n")
+        print(f"Thank you for your purchase, {user.name}! Your remaining balance is {user.wallet}")
+
     # Update product units and remove products with zero units
     for item in cart.items:
         item.units -= 1
@@ -97,10 +129,6 @@ def checkout(user, cart):
             products.remove(item)
     # Clear the cart
     cart.items = []
-
-    # Print a thank you message with the remaining balance
-    print("\n")
-    print(f"Thank you for your purchase, {user.name}! Your remaining balance is {user.wallet}")
 
 
 # Function to check the cart and proceed to checkout if requested

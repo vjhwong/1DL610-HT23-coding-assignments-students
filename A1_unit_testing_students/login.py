@@ -11,7 +11,7 @@ def login():
         for entry in data:
             if entry["username"] == username and entry["password"] == password:
                 print("Successfully logged in")
-                return {"username": entry["username"], "wallet": entry["wallet"], "cards": entry["cards"]} # Added cards
+                return {"username": entry["username"], "wallet": entry["wallet"]} # Added cards
         #print("Either username or password were incorrect")
     ############# added code
     answer = input("No user found, Would you like to register?: ")
@@ -34,7 +34,6 @@ def login():
                     "username": username,
                     "password": password_answer,
                     "wallet": 0,
-                    "cards": []  # added code
                 }
                 for entry in data:
                     if entry["username"] == username:

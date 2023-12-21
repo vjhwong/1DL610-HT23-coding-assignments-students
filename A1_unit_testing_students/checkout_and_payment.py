@@ -115,8 +115,7 @@ def checkoutAndPayment(login_info):
     while True:
 
         # Get user input for product selection in numbers
-        choice = input("\nEnter the product number you want to add to your cart (c to check cart, l to logout): ")
-
+        choice = input("\nEnter the product number you want to add to your cart (c to check cart, l to logout)\nOr enter r to remove an item from the cart: ")
         if choice == 'c':
             # Check the cart and proceed to checkout if requested
             check = check_cart(user, cart)
@@ -130,6 +129,25 @@ def checkoutAndPayment(login_info):
                 break
             else:
                 continue
+        ############
+        elif choice == 'r':
+            if cart.retrieve_item() == []:
+                print("There are no items in the cart to remove")
+            else:
+                remove = input("Enter which product you want to remove")
+                try:
+                    int(remove)
+                except:
+                    print(remove + " is not an integer")
+                else:
+                    if int(remove) < 0 or int(remove) > len(products):
+                        print("Not a valid product number")
+                    else:
+                        selected_product = products[int(remove) - 1]
+                        print(selected_product)
+                        cart.remove_item(selected_product)
+                        print(selected_product.name + " removed from your cart.")
+        ##########
         elif choice.isdigit() and 1 <= int(choice) <= len(products):
             # Add the selected product to the cart
             selected_product = products[int(choice) - 1]

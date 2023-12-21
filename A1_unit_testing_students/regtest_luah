@@ -1,0 +1,41 @@
+Launching pytest with arguments E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students\test_smoke_luah.py --no-header --no-summary -q in E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students
+
+##teamcity[enteredTheMatrix timestamp='2023-12-15T14:27:04.043']
+============================= test session starts =============================
+collecting ... collected 10 items
+##teamcity[testCount timestamp='2023-12-15T14:27:04.062' count='10']
+
+test_smoke_luah.py::test_smoke_1 ##teamcity[testSuiteStarted timestamp='2023-12-15T14:27:04.063' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah' name='test_smoke_luah' nodeId='1' parentNodeId='0']
+##teamcity[testStarted timestamp='2023-12-15T14:27:04.063' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_1' metainfo='test_smoke_1' name='test_smoke_1' nodeId='2' parentNodeId='1']
+PASSED                                  [ 10%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.069' duration='3' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_1' name='test_smoke_1' nodeId='2' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_2 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.070' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_2' metainfo='test_smoke_2' name='test_smoke_2' nodeId='3' parentNodeId='1']
+PASSED                                  [ 20%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.072' duration='1' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_2' name='test_smoke_2' nodeId='3' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_3 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.072' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_3' metainfo='test_smoke_3' name='test_smoke_3' nodeId='4' parentNodeId='1']
+PASSED                                  [ 30%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.075' duration='1' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_3' name='test_smoke_3' nodeId='4' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_4 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.075' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_4' metainfo='test_smoke_4' name='test_smoke_4' nodeId='5' parentNodeId='1']
+PASSED                                  [ 40%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.076' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_4' name='test_smoke_4' nodeId='5' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_5 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.077' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_5' metainfo='test_smoke_5' name='test_smoke_5' nodeId='6' parentNodeId='1']
+PASSED                                  [ 50%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.078' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_5' name='test_smoke_5' nodeId='6' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_6 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.079' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_6' metainfo='test_smoke_6' name='test_smoke_6' nodeId='7' parentNodeId='1']
+PASSED                                  [ 60%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.080' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_6' name='test_smoke_6' nodeId='7' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_7 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.080' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_7' metainfo='test_smoke_7' name='test_smoke_7' nodeId='8' parentNodeId='1']
+PASSED                                  [ 70%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.081' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_7' name='test_smoke_7' nodeId='8' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_8 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.082' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_8' metainfo='test_smoke_8' name='test_smoke_8' nodeId='9' parentNodeId='1']
+PASSED                                  [ 80%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.083' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_8' name='test_smoke_8' nodeId='9' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_9 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.084' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_9' metainfo='test_smoke_9' name='test_smoke_9' nodeId='10' parentNodeId='1']
+PASSED                                  [ 90%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.085' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_9' name='test_smoke_9' nodeId='10' parentNodeId='1']
+
+test_smoke_luah.py::test_smoke_10 ##teamcity[testStarted timestamp='2023-12-15T14:27:04.085' captureStandardOutput='false' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_10' metainfo='test_smoke_10' name='test_smoke_10' nodeId='11' parentNodeId='1']
+PASSED                                 [100%]##teamcity[testFinished timestamp='2023-12-15T14:27:04.087' duration='0' locationHint='python<E:\Uni\1DL610-HT23-coding-assignments-students\A1_unit_testing_students>://test_smoke_luah.test_smoke_10' name='test_smoke_10' nodeId='11' parentNodeId='1']
+
+
+============================= 10 passed in 0.04s ==============================
+##teamcity[testSuiteFinished timestamp='2023-12-15T14:27:04.089' name='test_smoke_luah' nodeId='1' parentNodeId='0']

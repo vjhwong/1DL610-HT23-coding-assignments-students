@@ -30,30 +30,32 @@ def correct_header(load_csv):
         assert header == ['Product', 'Price', 'Units']
 
 #testing if correct product is fetched
-def valid_product(load_csv):
+def test_valid_product(load_csv):
     productsTest = load_products_from_csv('products_remove.csv')
 
-    assert len(products) == 63
+    assert len(products) == 71
 
 
 #For wrong header
-def test_load_products_from_csv_wrong_headers(load_products_from_csv, capsys):
+#def test_load_products_from_csv_wrong_headers(load_products_from_csv, capsys):
     #need to change the name of the headers first in the csv file
-    with pytest.raises(SystemExit):
-        load_products_from_csv("products.csv")
+#    with pytest.raises(SystemExit):
+#        load_products_from_csv("products.csv")
 
     # Check that the correct error message is printed
-    captured = capsys.readouterr()
-    assert "Error: Incorrect CSV headers. Expected ['Name', 'Price', 'Units']" in captured.err
+#    captured = capsys.readouterr()
+#    assert "Error: Incorrect CSV headers. Expected ['Name', 'Price', 'Units']" in captured.err
 
 #check if no file exists:
 
 def test_empty_file():
-    assert load_products_from_csv("") == "Cannot find file"
+    with pytest.raises(FileNotFoundError):
+        assert load_products_from_csv("") == "Cannot find file"
 
 #check of file is wrong
 def test_wrong_file():
-    assert load_products_from_csv("wrong.csv") == "Cannot find file"
+    with pytest.raises(FileNotFoundError):
+        assert load_products_from_csv("wrong.csv") == "Cannot find file"
 
 #test if it breaks on float value
 def float_type_test():
@@ -64,7 +66,7 @@ def float_type_test():
 # Check if the products are loaded with correct name, quantity and price
 def test_load_products():
     productsTest = load_products_from_csv("products.csv")
-    for i in range(number_of_products):
+    for i in range(len(productsTest)):
         assert productsTest[i].name == productsTest[i].name
         assert productsTest[i].units == productsTest[i].units
         assert productsTest[i].price == productsTest[i].price

@@ -1,6 +1,6 @@
 def test_format_regtest():
     # file to write to
-    write_file = "regtest_smoketest"
+    write_file = "regtest_2"
 
     # resets file
     with open(write_file, "w") as regtest:

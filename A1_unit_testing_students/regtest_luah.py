@@ -8,6 +8,8 @@ import test_display_filtered_table
 import test_login
 import test_logout
 import test_searchAndBuyProduct
+import test_task3
+import checkout_and_payment_test
 from checkout_and_payment import *
 
 
@@ -108,6 +110,19 @@ def checkoutAndPayment_stub(mocker):
 def logout_stub(mocker):
     return mocker.patch('checkout_and_payment.logout', return_value=True)
 
+##LOAD PRODUCTS FROM CSV
+@pytest.fixture
+def load_csv():
+    shutil.copy('products.csv', 'products_remove.csv')
+    yield
+    #remove the copied CSV file
+
+# Logout stub
+@pytest.fixture
+def stub_logout(mocker):
+    return mocker.patch('logout.logout', return_value=True)
+
+################### TESTS START HERE #####################
 ## LOGIN
 def test_login_1(copy_json_file, monkeypatch):
     test_login.test_add_new_user1(copy_json_file, monkeypatch)
@@ -191,6 +206,38 @@ def test_searchAndBuyProduct_4(copy_csv_file, login_stub, display_filtered_table
 def test_searchAndBuyProduct_5(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch):
     test_searchAndBuyProduct.test_5_single_bad(copy_csv_file, login_stub, display_filtered_table_stub, checkoutAndPayment_stub, mocker, monkeypatch)
 
+# task 3
+def test_task3_1(load_csv):
+    test_task3.test_valid_product(load_csv)
+
+def test_task3_2():
+    test_task3.test_load_products()
+
+def test_task3_3():
+    test_task3.test_empty_file()
+
+def test_task3_4():
+    test_task3.test_wrong_file()
+
+def test_task3_5():
+    test_task3.test_load_products_with_values()
+
+    # task 4 tests
+
+def test_checkout_and_payment_1(stub_logout, capsys, monkeypatch):
+    checkout_and_payment_test.test_add_item(stub_logout, capsys, monkeypatch)
+
+def test_checkout_and_payment_2(stub_logout, capsys, monkeypatch):
+    checkout_and_payment_test.test_out_of_stock(stub_logout, capsys, monkeypatch)
+
+def test_checkout_and_payment_3(stub_logout, capsys, monkeypatch):
+    checkout_and_payment_test.test_one_product(stub_logout, capsys, monkeypatch)
+
+def test_checkout_and_payment_4(stub_logout, capsys, monkeypatch):
+    checkout_and_payment_test.test_several_products(stub_logout, capsys, monkeypatch)
+
+def test_checkout_and_payment_5(stub_logout, capsys, monkeypatch):
+    checkout_and_payment_test.test_other_letter(stub_logout, capsys, monkeypatch)
 ## test for new implementation
 
 def test_regtest_1(login_stub, monkeypatch, capsys, logout_stub):

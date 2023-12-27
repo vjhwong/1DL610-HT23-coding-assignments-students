@@ -1,4 +1,4 @@
-26,28c26,28
+36,38c36,38
 < Test called test_regtest_1 failed
 < Test called test_regtest_2 failed
 < Test called test_regtest_3 failed
@@ -6,11 +6,11 @@
 > Test called test_regtest_1 passed
 > Test called test_regtest_2 passed
 > Test called test_regtest_3 passed
-30,32c30,32
-< Total passed = 25
+40,42c40,42
+< Total passed = 35
 < Total failed = 3
-< Pass rate = 89.28571428571429%
+< Pass rate = 92.10526315789474%
 ---
-> Total passed = 28
+> Total passed = 38
 > Total failed = 0
 > Pass rate = 100.0%

@@ -1,11 +1,9 @@
-import builtins
+import os
+import shutil
 
 import pytest
-from A1_unit_testing_students.logout import logout
 
 from checkout_and_payment import *
-import shutil
-import os
 
 
 @pytest.fixture(scope="module")

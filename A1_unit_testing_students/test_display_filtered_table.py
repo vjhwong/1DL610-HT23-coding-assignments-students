@@ -1,8 +1,9 @@
-from products import *
-import pytest
-import shutil
 import os
-import sys
+import shutil
+
+import pytest
+
+from products import *
 
 
 @pytest.fixture(scope="module")

@@ -1,8 +1,10 @@
-import pytest
-from products import *
-from login import *
 import os
 import shutil
+
+import pytest
+
+from products import *
+
 
 @pytest.fixture(scope="module")
 def copy_files():

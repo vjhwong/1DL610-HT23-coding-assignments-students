@@ -1,12 +1,15 @@
+import os
+import shutil
+
 import pytest
-import test_login
-import test_logout
+
 import test_display_csv_as_table
 import test_display_filtered_table
+import test_login
+import test_logout
 import test_searchAndBuyProduct
 from checkout_and_payment import *
-import shutil
-import os
+
 
 @pytest.fixture #(scope="module")
 def copy_json_file():

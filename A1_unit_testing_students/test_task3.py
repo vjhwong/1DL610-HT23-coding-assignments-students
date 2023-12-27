@@ -1,14 +1,12 @@
-from checkout_and_payment import *
-import pytest
 import os
-import csv
 import shutil
-from unittest.mock import *
+
+import pytest
+
+from checkout_and_payment import *
+from checkout_and_payment import check_cart, User, ShoppingCart, Product
 from products import *
 
-
-from unittest.mock import patch
-from checkout_and_payment import check_cart, User, ShoppingCart, Product
 
 ##LOAD PRODUCTS FROM CSV
 @pytest.fixture

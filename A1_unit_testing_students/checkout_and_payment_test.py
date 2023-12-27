@@ -1,10 +1,12 @@
-from checkout_and_payment import checkoutAndPayment, ShoppingCart, Product
-from logout import logout
-import pytest
-import shutil
-import os
 import json
+import os
+import shutil
 from unittest import mock
+
+import pytest
+
+from checkout_and_payment import checkoutAndPayment, ShoppingCart, Product
+
 
 #Dummy user file
 @pytest.fixture(scope='module')

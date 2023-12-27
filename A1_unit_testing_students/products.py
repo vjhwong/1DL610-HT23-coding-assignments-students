@@ -1,7 +1,8 @@
-from login import login
-import re
-from checkout_and_payment import checkoutAndPayment
 import csv
+import re
+
+from checkout_and_payment import checkoutAndPayment
+from login import login
 
 
 #Display all the products

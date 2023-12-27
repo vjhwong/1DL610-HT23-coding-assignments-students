@@ -1,10 +1,9 @@
 import os
-from login import login
-import pytest
 import shutil
 
-import os
+import pytest
 
+from login import login
 
 
 @pytest.fixture(scope="module")

@@ -1,10 +1,13 @@
 # from unittest.mock import DEFAULT
 
-from products import *
-import pytest
 import os
 import shutil
 from unittest.mock import call
+
+import pytest
+
+from products import *
+
 
 @pytest.fixture(scope="module")
 def copy_csv_file():
